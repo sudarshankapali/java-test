@@ -9,7 +9,7 @@ public class TestAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TestAppApplication.class, args);
         System.out.println("Application started");
-        System.out.println("Started on port 8080")
+        System.out.println("Started on port 8080");
 	}
 
 }

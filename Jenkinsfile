@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building application...'
+                bat 'gradlew.bat clean build'
             }
         }
         stage('Test') {
             steps {
-                echo 'Running unit tests...'
+                bat 'gradlew.bat test'
             }
         }
         stage('Deploy') {

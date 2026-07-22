@@ -12,9 +12,20 @@ pipeline {
                 bat 'gradlew.bat test'
             }
         }
-        stage('Deploy') {
+        stage('Build Image') {
             steps {
-                echo 'Running unit tests...'
+                bat 'docker build -t test-app .'
+            }
+        }
+        stage('Cleanup Old Container') {
+            steps {
+                bat 'docker stop my-running-app || exit 0'
+                bat 'docker rm my-running-app || exit 0'
+            }
+        }
+        stage('Run Container') {
+            steps {
+                bat 'docker run -d -p 8080:8080 --name my-running-app test-app'
             }
         }
     }
